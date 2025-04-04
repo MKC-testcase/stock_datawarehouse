@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Graph</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Price Graph</h1>
+        <form method="POST">
+            <input type="text" name="ticker" placeholder="Enter Stock Symbol (e.g., AAPL)" required>
+            <button type="submit">Get Stock Data</button>
+        </form>
+
+        {% if graph_html %}
+        <div class="graph-container">
+            {{ graph_html | safe }}
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
